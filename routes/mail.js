@@ -18,26 +18,30 @@ module.exports = function (app, passport, utils) {
     // displaying To, Subject and Preview for each message.
     app.get('/mail', function (req, res, next) {
         request.get(
-            appSettings.apiEndpoints.exchangeBaseUrl + "/messages", 
-            { auth : { 'bearer' : passport.user.getToken(appSettings.resources.exchange).access_token } },
+            'https://graph.microsoft.com/beta/me/Messages?$orderby=' + encodeURIComponent('DateTimeReceived desc'),
+            { Authorization : { 'bearer' : passport.user.getToken(appSettings.resources.exchange).access_token },
+             Accept: 'application/json;odata.metadata=none'
+              },
             function (error, response, body) {
                 if (error) {
+                    console.log('error', error);
                     next(error);
                 }
                 else {
+                    console.log('body', body);
                     data = { user: passport.user, msgs: JSON.parse(body)['value'] };
                     res.render('mail', { data: data });
                 }
             }
         );
     });
-    
+
     // GET a given message and display content to the user,
     // displaying the message as-is in HTML.
     app.get('/mail/view', function (req, res, next) {
         var id = url.parse(req.url, true).query.id;
         request.get(
-            appSettings.apiEndpoints.exchangeBaseUrl + "/messages/" + id, 
+            appSettings.apiEndpoints.exchangeBaseUrl + "/messages/" + id,
             { auth : { 'bearer' : passport.user.getToken(appSettings.resources.exchange).access_token } },
             function (error, response, body) {
                 if (error) {
@@ -48,14 +52,14 @@ module.exports = function (app, passport, utils) {
                     res.end(jsonBody.Body.Content);
                 }
             }
-        ); 
+        );
     })
 
     // delete a selected email message using the O365 API.
     app.get('/mail/delete', function (req, res, next) {
         var id = url.parse(req.url, true).query.id;
         request.del(
-            appSettings.apiEndpoints.exchangeBaseUrl + "/messages/" + id, 
+            appSettings.apiEndpoints.exchangeBaseUrl + "/messages/" + id,
             { auth : { 'bearer' : passport.user.accessToken } },
             function (error, response, body) {
                 if (error) {
@@ -66,14 +70,14 @@ module.exports = function (app, passport, utils) {
                 }
             }
         );
-    
+
     })
-    
+
     // Pop up a message editor for th user to add comment to the original message.
     app.get('/mail/reply', function (req, res, next) {
         var id = url.parse(req.url, true).query.id;
         request.get(
-            appSettings.apiEndpoints.exchangeBaseUrl + "/messages/" + id, 
+            appSettings.apiEndpoints.exchangeBaseUrl + "/messages/" + id,
             { auth : { 'bearer' : passport.user.getToken(appSettings.resources.exchange).access_token } },
             function (error, response, body) {
                 if (error) {
@@ -85,21 +89,21 @@ module.exports = function (app, passport, utils) {
                     res.render('mailReply', {
                         user : passport.user,
                         messageId : id,
-                        recipients: jsonBody.Sender.EmailAddress.Address, 
-                        subject: jsonBody.Subject, 
+                        recipients: jsonBody.Sender.EmailAddress.Address,
+                        subject: jsonBody.Subject,
                         content: content
-                    });              
+                    });
                 }
             }
         );
     });
-    
+
     // Pop up a message composer for the user to creat and send a new mail message.
     app.get('/mail/new', function (req, res, next) {
         res.render('mailedit', { user: passport.user, recipients : "user@domain", subject: "Test", content : "" });
     })
-    
-    // send a new mail message to a specific recipient using O365 API. 
+
+    // send a new mail message to a specific recipient using O365 API.
     // The request body must be a JSON string, not an JSON object.
     app.post('/mail/send', function (req, res, next) {
         var reqBody = {
@@ -115,7 +119,7 @@ module.exports = function (app, passport, utils) {
         var reqAuth = { 'bearer': passport.user.getToken(appSettings.resources.exchange).access_token };
 
         request.post(
-            { url: reqUrl, headers: reqHeaders, body: JSON.stringify(reqBody), auth: reqAuth },        
+            { url: reqUrl, headers: reqHeaders, body: JSON.stringify(reqBody), auth: reqAuth },
             function (err, response, body) {
                 if (err) { next(err); }
                 else {
@@ -126,25 +130,25 @@ module.exports = function (app, passport, utils) {
                     else {
                         res.redirect('/mail' );
                     }
-                    
+
                 }
             }
         );
     })
-    
-    // reply a mail message using the O365 API. The app-submitted request body 
-    // contains only the reply.The API will include the original message in the 
+
+    // reply a mail message using the O365 API. The app-submitted request body
+    // contains only the reply.The API will include the original message in the
     // final request body before sending it over the wire.
     app.post('/mail/reply', function (req, res, next) {
-        var messageId = req.body.messageId; 
+        var messageId = req.body.messageId;
 
         var reqBody = { 'Comment' : req.body.comment };
         var reqHeaders = { 'content-type': 'application/json' };
         var reqUrl = appSettings.apiEndpoints.exchangeBaseUrl + "/messages/" + messageId + "/reply";
         var reqAuth = { 'bearer': passport.user.getToken(appSettings.resources.exchange).access_token };
-        
+
         request.post(
-            { url: reqUrl, headers: reqHeaders, body: JSON.stringify(reqBody), auth: reqAuth },        
+            { url: reqUrl, headers: reqHeaders, body: JSON.stringify(reqBody), auth: reqAuth },
             function (err, response, body) {
                 if (err) { next(err); }
                 else {
@@ -154,11 +158,11 @@ module.exports = function (app, passport, utils) {
                     }
                     else {
                         res.redirect('/mail');
-                    }                    
+                    }
                 }
             }
         );
-    })    
+    })
 
 }
 
