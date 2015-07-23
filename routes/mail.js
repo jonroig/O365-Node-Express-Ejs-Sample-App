@@ -41,7 +41,7 @@ module.exports = function (app, passport, utils) {
         var id = url.parse(req.url, true).query.id;
         request.get(
             appSettings.apiEndpoints.exchangeBaseUrl + "/messages/" + id,
-            { auth : { 'bearer' : passport.user.getToken(appSettings.resources.exchange).access_token } },
+            { Authorization : { 'Bearer' : passport.user.getToken(appSettings.resources.exchange).access_token } },
             function (error, response, body) {
                 if (error) {
                     next(error);
