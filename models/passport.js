@@ -57,6 +57,7 @@ module.exports = function (passport) {
             + '&client_id=' + appSettings.oauthOptions.clientId
             + '&client_secret=' + encodeURIComponent(appSettings.oauthOptions.clientSecret)
             + '&resource=' + encodeURIComponent(resource);
+            console.log('data',data);
             var opts = {
                 url: appSettings.apiEndpoints.accessTokenRequestUrl,
                 body: data,
