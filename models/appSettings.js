@@ -6,16 +6,14 @@
 (function (appSettings) {
 
     // Set the Azure tenant for your Office 365 Developer site.
-    appSettings.tenant = "ocommand";
+    appSettings.tenant = "officecommander";
 
     // Configure the OAuth options to match your app.
     appSettings.oauthOptions = {
-        clientId : "8e302bed-98ab-4d7d-997a-08f197823789"
-        ,clientSecret : "0bCcmiou3IU6Ezp2Kuv+K/vEJhSA82Vgu9+L4B39dEA="
-        ,tenantId : "80ac7e51-98f0-4b01-847a-7e45e21df153"
+        clientId : "7d2eeb09-ffdf-4862-84c3-0c0db0d8a3aa"
+        ,clientSecret : "fWBhDwN8ZX1PZbfEzuVGCtKnSx/uSYJwikOTrvOFCJ4="
+        ,tenantId : "7e6178cf-6e84-42ca-9206-5779585ec237"
         ,resource : "https://graph.microsoft.com/"
-        ,prompt : "consent"
-        ,responseType : 'code'
 
         // The redirectURL is set in AAD. For the following redirectURL
         // "http://localhost:1337/auth/azureoauth/callback",
