@@ -11,7 +11,7 @@
     // Configure the OAuth options to match your app.
     appSettings.oauthOptions = {
         clientId : "7d2eeb09-ffdf-4862-84c3-0c0db0d8a3aa"
-        ,clientSecret : "21X3JKdZClpPKh6m80BgNcfyjF98D5zpzsanhfPX2NI="
+        ,clientSecret : "fWBhDwN8ZX1PZbfEzuVGCtKnSx/uSYJwikOTrvOFCJ4="
         ,tenantId : "7e6178cf-6e84-42ca-9206-5779585ec237"
         ,resource : "https://api.office.com/discovery/"
 
@@ -34,7 +34,7 @@
         oneDriveBusinessBaseUrl : "https://" + appSettings.tenant + "-my.sharepoint.com/_api/v1.0/me",
         sharePointSiteBaseUrl : "https://" + appSettings.tenant + ".sharepoint.com/_api/web",
         discoveryServiceBaseUrl : "https://api.office.com/discovery/v1.0/me",
-        accessTokenRequestUrl : "https://login.microsoftonline.com/7e6178cf-6e84-42ca-9206-5779585ec237/oauth2/token"
+        accessTokenRequestUrl : "https://login.microsoftonline.com/" +  appSettings.tenantId + "/oauth2/token"
     };
 
     appSettings.useFiddler = false;
