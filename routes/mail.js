@@ -19,9 +19,9 @@ module.exports = function (app, passport, utils) {
     app.get('/mail', function (req, res, next) {
 
         request.get(
-            'https://graph.windows.net/me?api-version',
-            { authorization : 'Bearer: ' + passport.user.getToken('https://api.office.com/discovery/').access_token,
-            'api-version': '1.5'  },
+            'https://graph.windows.net/me?api-version=1.5',
+            { authorization : 'Bearer: ' + passport.user.getToken('https://api.office.com/discovery/').access_token
+              },
             function (error, response, body) {
                 if (error) {
                     next(error);
