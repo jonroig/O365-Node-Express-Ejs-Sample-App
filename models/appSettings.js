@@ -6,12 +6,12 @@
 (function (appSettings) {
 
     // Set the Azure tenant for your Office 365 Developer site.
-    appSettings.tenant = "officecommander";
+    appSettings.tenant = "ocommand";
 
     // Configure the OAuth options to match your app.
     appSettings.oauthOptions = {
-        clientId : "7d2eeb09-ffdf-4862-84c3-0c0db0d8a3aa"
-        ,clientSecret : "fWBhDwN8ZX1PZbfEzuVGCtKnSx/uSYJwikOTrvOFCJ4="
+        clientId : "873840b5-ab0a-468f-9fc4-74e4677997ad"
+        ,clientSecret : "+TQnmbMPonPAeh6gK7MzdXwh+L5pgzp7di2OIxoqiUQ="
         ,tenantId : "7e6178cf-6e84-42ca-9206-5779585ec237"
         ,resource : "https://graph.microsoft.com/"
 
