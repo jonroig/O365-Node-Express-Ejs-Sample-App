@@ -57,7 +57,7 @@ module.exports = function (passport) {
             + '&refresh_token=' + passport.user.refresh_token
             + '&client_id=' + appSettings.oauthOptions.clientId
             + '&client_secret=' + encodeURIComponent(appSettings.oauthOptions.clientSecret)
-            + '&redirect_uri=https://dev.office.com&response_type=code';
+            + '&redirect_uri=http://officecommander.cloudapp.net&response_type=code';
 
             console.log('data',data);
             var opts = {
