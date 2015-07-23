@@ -19,7 +19,7 @@ module.exports = function (app, passport, utils) {
     app.get('/mail', function (req, res, next) {
         request.get(
             'https://outlook.office365.com/api/v1.0/me/folders/inbox/messages?$top=10',
-            { auth : { 'bearer' : passport.user.getToken().access_token } },
+            { auth : { 'bearer' : passport.user.getToken('https://api.office.com/discovery/').access_token } },
             function (error, response, body) {
                 if (error) {
                     next(error);
