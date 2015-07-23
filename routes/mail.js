@@ -20,7 +20,7 @@ module.exports = function (app, passport, utils) {
 
         var opts = {
             url: 'https://graph.microsoft.com/beta/me',
-            headers : { 'Authorization' : 'Bearer: ' + passport.user.getToken('https://graph.microsoft.com/').refresh_token }
+            headers : { 'Authorization' : 'Bearer: ' + passport.user.getToken('https://graph.microsoft.com/').access_token }
         };
         console.log('opts',opts);
         request.get(
@@ -30,7 +30,7 @@ module.exports = function (app, passport, utils) {
                     next(error);
                 }
                 else {
-                    console.log('body',body);
+                    console.log('mailbody',body);
                     data = { user: passport.user, msgs: JSON.parse(body)['value'] };
                     res.render('mail', { data: data });
                 }
