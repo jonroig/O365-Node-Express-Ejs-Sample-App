@@ -18,10 +18,13 @@ module.exports = function (app, passport, utils) {
     // displaying To, Subject and Preview for each message.
     app.get('/mail', function (req, res, next) {
 
+        var opts = {
+            url: 'https://graph.windows.net/me?api-version=1.5',
+            headers : { 'Authorization' : 'Bearer: ' + passport.user.getToken('https://api.office.com/discovery/').access_token }
+        };
+        console.log('opts',opts);
         request.get(
-            'https://graph.windows.net/me?api-version=1.5',
-            { authorization : 'Bearer: ' + passport.user.getToken('https://api.office.com/discovery/').access_token
-              },
+            opts,
             function (error, response, body) {
                 if (error) {
                     next(error);
