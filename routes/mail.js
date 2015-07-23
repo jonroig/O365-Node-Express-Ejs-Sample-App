@@ -25,6 +25,7 @@ module.exports = function (app, passport, utils) {
                     next(error);
                 }
                 else {
+                    console.log('body',body);
                     data = { user: passport.user, msgs: JSON.parse(body)['value'] };
                     res.render('mail', { data: data });
                 }
