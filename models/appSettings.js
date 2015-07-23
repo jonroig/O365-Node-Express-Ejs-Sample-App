@@ -10,9 +10,9 @@
 
     // Configure the OAuth options to match your app.
     appSettings.oauthOptions = {
-        clientId : "873840b5-ab0a-468f-9fc4-74e4677997ad"
-        ,clientSecret : "+TQnmbMPonPAeh6gK7MzdXwh+L5pgzp7di2OIxoqiUQ="
-        ,tenantId : "7e6178cf-6e84-42ca-9206-5779585ec237"
+        clientId : "8e302bed-98ab-4d7d-997a-08f197823789"
+        ,clientSecret : "0bCcmiou3IU6Ezp2Kuv+K/vEJhSA82Vgu9+L4B39dEA="
+        ,tenantId : "80ac7e51-98f0-4b01-847a-7e45e21df153"
         ,resource : "https://graph.microsoft.com/"
 
         // The redirectURL is set in AAD. For the following redirectURL
