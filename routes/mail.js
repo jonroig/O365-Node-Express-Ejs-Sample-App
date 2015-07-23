@@ -11,7 +11,7 @@ var appSettings = require('../models/appSettings.js');
 
 module.exports = function (app, passport, utils) {
     app.use('/mail', function (req, res, next) {
-        passport.getAccessToken(appSettings.resources.exchange, req, res, next);
+        passport.getAccessToken('https://graph.microsoft.com/', req, res, next);
     })
 
     // Get a messaget list in the user's Inbox using the O365 API,
@@ -19,7 +19,7 @@ module.exports = function (app, passport, utils) {
     app.get('/mail', function (req, res, next) {
 
         var opts = {
-            url: 'https://outlook.office365.com/api/v1.0/me/messages',
+            url: 'h https://graph.microsoft.com/beta/me',
             headers : { 'Authorization' : 'Bearer: ' + passport.user.getToken('https://graph.microsoft.com/').access_token }
         };
         console.log('opts',opts);
