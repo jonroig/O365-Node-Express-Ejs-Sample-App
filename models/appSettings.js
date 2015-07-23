@@ -23,7 +23,7 @@
     };
 
     appSettings.resources = {
-        exchange : "https://outlook.office365.com/",
+        exchange : "https://api.office365.com/",
         onedrive : 'https://' + appSettings.tenant + '-my.sharepoint.com/',
         sharepoint : 'https://' + appSettings.tenant + '.sharepoint.com/',
         discovery : 'https://api.office.com/discovery/'
