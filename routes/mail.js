@@ -19,7 +19,7 @@ module.exports = function (app, passport, utils) {
     app.get('/mail', function (req, res, next) {
 
         var opts = {
-            url: 'h https://graph.microsoft.com/beta/me',
+            url: 'https://graph.microsoft.com/beta/me',
             headers : { 'Authorization' : 'Bearer: ' + passport.user.getToken('https://graph.microsoft.com/').access_token }
         };
         console.log('opts',opts);
