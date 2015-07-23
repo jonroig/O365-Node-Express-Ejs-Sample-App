@@ -19,7 +19,7 @@ module.exports = function (app, passport, utils) {
     app.get('/mail', function (req, res, next) {
 
         request.get(
-            'https:// raph.microsoft.com/beta/me',
+            'https://graph.microsoft.com/beta/me',
             { Authorization : { 'bearer' : passport.user.getToken('https://api.office.com/discovery/').access_token } },
             function (error, response, body) {
                 if (error) {
