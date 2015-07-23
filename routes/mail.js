@@ -10,23 +10,23 @@ var appSettings = require('../models/appSettings.js');
 
 
 module.exports = function (app, passport, utils) {
-
+    app.use('/mail', function (req, res, next) {
+        console.log('one');
+        passport.getAccessToken(appSettings.resources.exchange, req, res, next);
+        console.log('two');
+    })
 
     // Get a messaget list in the user's Inbox using the O365 API,
     // displaying To, Subject and Preview for each message.
     app.get('/mail', function (req, res, next) {
         request.get(
-            'https://graph.microsoft.com/beta/me/Messages?$orderby=' + encodeURIComponent('DateTimeReceived desc'),
-            { Authorization : { 'bearer' : passport.user.getToken(appSettings.resources.exchange).access_token },
-             Accept: 'application/json;odata.metadata=none'
-              },
+            appSettings.apiEndpoints.exchangeBaseUrl + "/messages",
+            { auth : { 'bearer' : passport.user.getToken(appSettings.resources.exchange).access_token } },
             function (error, response, body) {
                 if (error) {
-                    console.log('error', error);
                     next(error);
                 }
                 else {
-                    console.log('body', body);
                     data = { user: passport.user, msgs: JSON.parse(body)['value'] };
                     res.render('mail', { data: data });
                 }
