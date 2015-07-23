@@ -55,8 +55,8 @@ module.exports = function (passport) {
             var data = 'grant_type=refresh_token'
             + '&refresh_token=' + passport.user.refresh_token
             + '&client_id=' + appSettings.oauthOptions.clientId
-            + '&client_secret=' + encodeURIComponent(appSettings.oauthOptions.clientSecret)
-            + '&resource=' + encodeURIComponent(resource);
+            + '&client_secret=' + encodeURIComponent(appSettings.oauthOptions.clientSecret);
+            // + '&resource=' + encodeURIComponent(resource);
             console.log('data',data);
             var opts = {
                 url: appSettings.apiEndpoints.accessTokenRequestUrl,
