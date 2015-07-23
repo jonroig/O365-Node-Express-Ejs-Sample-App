@@ -19,7 +19,7 @@ module.exports = function (app, passport, utils) {
     app.get('/mail', function (req, res, next) {
         request.get(
             appSettings.apiEndpoints.exchangeBaseUrl + "/messages",
-            { auth : { 'bearer' : passport.user.getToken(appSettings.resources.exchange).access_token } },
+            { auth : { 'bearer' : passport.user.getToken('default').access_token } },
             function (error, response, body) {
                 if (error) {
                     next(error);
