@@ -53,11 +53,12 @@ module.exports = function (passport) {
             // skip to the next middleware
             return next();
         } else {
-            var data = 'grant_type=refresh_token'
+            var data = 'grant_type=authorization_code'
             + '&refresh_token=' + passport.user.refresh_token
             + '&client_id=' + appSettings.oauthOptions.clientId
-            + '&client_secret=' + encodeURIComponent(appSettings.oauthOptions.clientSecret);
-            // + '&resource=' + encodeURIComponent(resource);
+            + '&client_secret=' + encodeURIComponent(appSettings.oauthOptions.clientSecret)
+            + '&redirect_uri=https://dev.office.com&response_type=code';
+
             console.log('data',data);
             var opts = {
                 url: appSettings.apiEndpoints.accessTokenRequestUrl,
