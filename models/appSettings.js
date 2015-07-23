@@ -14,7 +14,7 @@
         ,clientSecret : "0bCcmiou3IU6Ezp2Kuv+K/vEJhSA82Vgu9+L4B39dEA="
         ,tenantId : "80ac7e51-98f0-4b01-847a-7e45e21df153"
         ,resource : "https://graph.microsoft.com/"
-        ,prompt : "consent";
+        ,prompt : "consent"
 
         // The redirectURL is set in AAD. For the following redirectURL
         // "http://localhost:1337/auth/azureoauth/callback",
