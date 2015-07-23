@@ -20,7 +20,7 @@ module.exports = function (app, passport, utils) {
 
         var opts = {
             url: 'https://graph.microsoft.com/beta/me',
-            headers : { 'Authorization' : 'Bearer: ' + passport.user.getToken('https://graph.microsoft.com/').access_token }
+            headers : { 'Authorization' : 'Bearer: ' + passport.user.getToken('https://graph.microsoft.com/').id_token }
         };
         console.log('opts',opts);
         request.get(
