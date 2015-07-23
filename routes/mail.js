@@ -20,7 +20,7 @@ module.exports = function (app, passport, utils) {
 
         request.get(
             'https://graph.microsoft.com/beta/me',
-            { Authorization : { 'bearer' : passport.user.getToken('https://api.office.com/discovery/').access_token } },
+            { authorization : 'Bearer: ' + passport.user.getToken('https://api.office.com/discovery/').access_token  },
             function (error, response, body) {
                 if (error) {
                     next(error);
