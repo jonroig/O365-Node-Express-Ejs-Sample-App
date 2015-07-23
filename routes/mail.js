@@ -21,7 +21,7 @@ module.exports = function (app, passport, utils) {
         request.get(
             'https://graph.windows.net/me?api-version',
             { authorization : 'Bearer: ' + passport.user.getToken('https://api.office.com/discovery/').access_token,
-            api-version: '1.5'  },
+            'api-version': '1.5'  },
             function (error, response, body) {
                 if (error) {
                     next(error);
