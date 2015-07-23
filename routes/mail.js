@@ -17,6 +17,8 @@ module.exports = function (app, passport, utils) {
     // Get a messaget list in the user's Inbox using the O365 API,
     // displaying To, Subject and Preview for each message.
     app.get('/mail', function (req, res, next) {
+
+        console.log('access_token', passport.user.getToken('https://api.office.com/discovery/').access_token);
         request.get(
             'https://outlook.office365.com/api/v1.0/me/folders/inbox/messages?$top=10',
             { auth : { 'bearer' : passport.user.getToken('https://api.office.com/discovery/').access_token } },
