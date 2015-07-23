@@ -34,7 +34,7 @@
         oneDriveBusinessBaseUrl : "https://" + appSettings.tenant + "-my.sharepoint.com/_api/v1.0/me",
         sharePointSiteBaseUrl : "https://" + appSettings.tenant + ".sharepoint.com/_api/web",
         discoveryServiceBaseUrl : "https://api.office.com/discovery/v1.0/me",
-        accessTokenRequestUrl : "https://login.microsoftonline.com/common/oauth2/token"
+        accessTokenRequestUrl : "https://login.microsoftonline.com/7e6178cf-6e84-42ca-9206-5779585ec237/oauth2/token"
     };
 
     appSettings.useFiddler = false;
