@@ -19,7 +19,7 @@ module.exports = function (app, passport, utils) {
     app.get('/mail', function (req, res, next) {
 
         var opts = {
-            url: 'https://graph.windows.net/me?api-version=1.5',
+            url: 'https://outlook.office365.com/api/v1.0/me/messages',
             headers : { 'Authorization' : 'Bearer: ' + passport.user.getToken('https://api.office.com/discovery/').access_token }
         };
         console.log('opts',opts);
