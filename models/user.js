@@ -3,7 +3,7 @@
  */
 
 (function (user) {
-    user.tokens = {};   
+    user.tokens = {};
     user.refresh_token = "";
     user.username = "";
     user.displayName = "";
@@ -17,13 +17,13 @@
         } else {
             user.displayname = result.userProfile.displayname;
             user.username = result.userProfile.username;
-            
+
             user.accessToken = result.accessToken;
             user.refresh_token = result.refreshToken;
 
             result.tokenParams.refresh_token = result.refreshToken;
             user.setToken(result.tokenParams);
-          
+
             return next(null, user);
         }
     };
@@ -49,6 +49,7 @@
     }
     user.getToken = function (resourceUri) {
         if (user.hasToken(resourceUri)) {
+            console.log('user.getToken has token');
             return user.tokens[resourceUri];
         }
     }

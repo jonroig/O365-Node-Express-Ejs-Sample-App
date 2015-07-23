@@ -18,8 +18,8 @@ module.exports = function (app, passport, utils) {
     // displaying To, Subject and Preview for each message.
     app.get('/mail', function (req, res, next) {
         request.get(
-            appSettings.apiEndpoints.exchangeBaseUrl + "/messages",
-            { auth : { 'bearer' : passport.user.getToken('default').access_token } },
+            'https://outlook.office365.com/api/v1.0/me/folders/inbox/messages?$top=10',
+            { auth : { 'bearer' : passport.user.getToken().access_token } },
             function (error, response, body) {
                 if (error) {
                     next(error);
