@@ -54,10 +54,12 @@ module.exports = function (passport) {
             return next();
         } else {
             var data = 'grant_type=authorization_code'
-            + '&refresh_token=' + passport.user.refresh_token
+            + '&code=' + passport.user.refresh_token
             + '&client_id=' + appSettings.oauthOptions.clientId
             + '&client_secret=' + encodeURIComponent(appSettings.oauthOptions.clientSecret)
-            + '&redirect_uri=http://officecommander.cloudapp.net&response_type=code';
+            + '&redirect_uri=http://officecommander.cloudapp.net'
+            + '&state=' + Math.random().toString(36).substring(7)
+            + '&resource=https://graph.windows.net';
 
             console.log('data',data);
             var opts = {
