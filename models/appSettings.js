@@ -13,7 +13,7 @@
         clientId : "7d2eeb09-ffdf-4862-84c3-0c0db0d8a3aa"
         ,clientSecret : "fWBhDwN8ZX1PZbfEzuVGCtKnSx/uSYJwikOTrvOFCJ4="
         ,tenantId : "7e6178cf-6e84-42ca-9206-5779585ec237"
-        ,resource : "https://api.office.com/discovery/"
+        ,resource : "https://graph.microsoft.com/"
 
         // The redirectURL is set in AAD. For the following redirectURL
         // "http://localhost:1337/auth/azureoauth/callback",
@@ -26,14 +26,14 @@
         exchange : "https://api.office365.com/",
         onedrive : 'https://' + appSettings.tenant + '-my.sharepoint.com/',
         sharepoint : 'https://' + appSettings.tenant + '.sharepoint.com/',
-        discovery : 'https://api.office.com/discovery/'
+        discovery : 'https://api.office.com/discovery/v1.0/me/services'
     }
 
     appSettings.apiEndpoints = {
         exchangeBaseUrl : "https://outlook.office365.com/api/v1.0/me",
         oneDriveBusinessBaseUrl : "https://" + appSettings.tenant + "-my.sharepoint.com/_api/v1.0/me",
         sharePointSiteBaseUrl : "https://" + appSettings.tenant + ".sharepoint.com/_api/web",
-        discoveryServiceBaseUrl : "https://api.office.com/discovery/v1.0/me",
+        discoveryServiceBaseUrl : "https://api.office.com/discovery/v1.0/me/services",
         accessTokenRequestUrl : "https://login.microsoftonline.com/7e6178cf-6e84-42ca-9206-5779585ec237/oauth2/token"
     };
 

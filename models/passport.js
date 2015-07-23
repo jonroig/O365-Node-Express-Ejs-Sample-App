@@ -31,6 +31,7 @@ module.exports = function (passport) {
                 'userProfile': profile
             },
             function (err, user) {
+                console.log('user',user);
                 passport.user = null;
                 if (err)
                     return next(err);
